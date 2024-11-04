@@ -27,8 +27,7 @@ public class BILLPAYMENTS {
             System.out.println("    4. Staff Only");
             System.out.println("    5. Exit the Application ");
             System.out.println("-----------------------------------------");
-            System.out.println("");
-        
+            System.out.println(" ");
        int choice;
            while (true) {
             System.out.print("Enter choice: ");
