@@ -11,20 +11,27 @@ public class USER {
         System.out.println("=====================================");
         System.out.println("|           ADD USER               |");
         System.out.println("=====================================");
-        
-        System.out.print("Enter First Name: ");
+      System.out.print("Enter First Name: ");
         String fname = sc.nextLine();
+        
         System.out.print("Enter Last Name: ");
         String lname = sc.nextLine();
+        
         System.out.print("Address: ");
-        String add = sc.nextLine();
+        String add = sc.nextLine();  
+        
         System.out.print("Age: ");
         int age = sc.nextInt();
+        
+        sc.nextLine();  
+        
         System.out.print("Contact No: ");
-        String cont = sc.next();
+        String cont = sc.nextLine();  
+        
         System.out.print("Email Address: ");
-        String email = sc.next();
-
+        String email = sc.nextLine();  
+        
+        
         String sql = "INSERT INTO User (First_Name, Last_Name, Address, Age, Contact_No, Email) VALUES (?, ?, ?, ?, ?, ?)";
         conf.addRecord(sql, fname, lname, add, age, cont, email);
         
@@ -100,13 +107,14 @@ public class USER {
                     }
 
                     System.out.print("Enter new Address: ");
-                    String newadd = sc.next();
+                    String newadd = sc.nextLine();
                     System.out.print("Enter new Age: ");
                     int newage = sc.nextInt();
+                    sc.nextLine();
                     System.out.print("Enter new Contact No.: ");
-                    String newcon = sc.next();
+                    String newcon = sc.nextLine();
                     System.out.print("Enter new Email Address: ");
-                    String newemailadd = sc.next();
+                    String newemailadd = sc.nextLine();
 
                     conf.updateRecord(sqlUpdate, newadd, newage, newcon, newemailadd, ID);
                     System.out.println("User updated successfully!");

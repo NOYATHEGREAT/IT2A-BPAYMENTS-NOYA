@@ -1,5 +1,7 @@
 package billpayments;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class BillRecord {
@@ -12,7 +14,6 @@ public class BillRecord {
         System.out.println("|          ADD BILL RECORD          |");
         System.out.println("=====================================");
         
-        // View available users and bills
         USER us = new USER();
         us.viewUser();
         
@@ -20,24 +21,26 @@ public class BillRecord {
         UtilityBills ub = new UtilityBills();
         ub.viewBills();
 
-        // Get User ID
-        int userId = getValidUserId(sc, conf);
-        // Get Utility Bill ID
+       
+
+        int userId = getValidUserId(sc, conf); 
         int billId = getValidBillId(sc, conf);
 
-        // Get payment details
-        System.out.print("Enter Date you Paid (YYYY-MM-DD): ");
-        String datePaid = sc.next();
+        
+        LocalDate currdate = LocalDate.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String datePaid = currdate.format(format);
         
         System.out.print("Amount you paid: ");
         double amountPaid = sc.nextDouble();
         
         System.out.print("Payment Method: ");
         String paymentMethod = sc.next();
-
-        // Insert the bill record
-        String sql = "INSERT INTO BillRecord (User_ID, Ub_ID, Date_Paid, Amount_Paid, Payment_Method) VALUES (?,?,?,?,?)";
-        conf.addRecord(sql, userId, billId, datePaid, amountPaid, paymentMethod);
+          
+        String status = "Pending";
+        
+        String sql = "INSERT INTO BillRecord (User_ID, Ub_ID, Date_Paid, Amount_Paid, Payment_Method,Status) VALUES (?,?,?,?,?,?)";
+        conf.addRecord(sql, userId, billId, datePaid, amountPaid, paymentMethod,status);
         
         System.out.println("Bill record added successfully!");
     }
@@ -78,18 +81,101 @@ public class BillRecord {
         }
     }
 
-    public void viewRecords() {
-        String query = "SELECT br.BillRecord_ID, u.First_Name, u.Last_Name, ub.Type, ub.Name_Of_Company, br.Date_Paid, br.Amount_Paid, br.Payment_Method " +
+    public void viewAllRecords() {
+        String query = "SELECT br.BillRecord_ID, u.First_Name, u.Last_Name, ub.Type, ub.Name_Of_Company, br.Date_Paid, br.Amount_Paid, br.Payment_Method, br.Status " +
                        "FROM BillRecord br " +
                        "INNER JOIN User u ON br.User_ID = u.User_ID " +
                        "INNER JOIN UtilityBills ub ON br.Ub_ID = ub.UB_ID";
 
-        String[] headers = {"Bill Record ID", "First Name", "Last Name", "Bill Type", "Company Name", "Date Paid", "Amount Paid", "Payment Method"};
-        String[] columns = {"BillRecord_ID", "First_Name", "Last_Name", "Type", "Name_Of_Company", "Date_Paid", "Amount_Paid", "Payment_Method"};
+        String[] headers = {"Bill Record ID", "First Name", "Last Name", "Bill Type", "Company Name", "Date Paid", "Amount Paid", "Payment Method","Status"};
+        String[] columns = {"BillRecord_ID", "First_Name", "Last_Name", "Type", "Name_Of_Company", "Date_Paid", "Amount_Paid", "Payment_Method","Status"};
 
         CONFIG conf = new CONFIG();
         conf.viewRecords(query, headers, columns);
     }
+    public void viewPendingRecords(){
+        
+         String query = "SELECT br.BillRecord_ID, u.First_Name, u.Last_Name, ub.Type, ub.Name_Of_Company, br.Date_Paid, br.Amount_Paid, br.Payment_Method, br.Status " +
+                       "FROM BillRecord br " +
+                       "INNER JOIN User u ON br.User_ID = u.User_ID " +
+                       "INNER JOIN UtilityBills ub ON br.Ub_ID = ub.UB_ID "
+                 + "WHERE br.Status = 'Pending' ";
+
+        String[] headers = {"Bill Record ID", "First Name", "Last Name", "Bill Type", "Company Name", "Date Paid", "Amount Paid", "Payment Method","Status"};
+        String[] columns = {"BillRecord_ID", "First_Name", "Last_Name", "Type", "Name_Of_Company", "Date_Paid", "Amount_Paid", "Payment_Method","Status"};
+
+        CONFIG conf = new CONFIG();
+        conf.viewRecords(query, headers, columns);
+        
+        
+        
+    }
+    public void viewNotpaidRecords(){
+        
+        String query = "SELECT br.BillRecord_ID, u.First_Name, u.Last_Name, ub.Type, ub.Name_Of_Company, br.Date_Paid, br.Amount_Paid, br.Payment_Method, br.Status " +
+                       "FROM BillRecord br " +
+                       "INNER JOIN User u ON br.User_ID = u.User_ID " +
+                       "INNER JOIN UtilityBills ub ON br.Ub_ID = ub.UB_ID "
+                 + "WHERE br.Status = 'Not paid' ";
+
+        String[] headers = {"Bill Record ID", "First Name", "Last Name", "Bill Type", "Company Name", "Date Paid", "Amount Paid", "Payment Method","Status"};
+        String[] columns = {"BillRecord_ID", "First_Name", "Last_Name", "Type", "Name_Of_Company", "Date_Paid", "Amount_Paid", "Payment_Method","Status"};
+
+        CONFIG conf = new CONFIG();
+        conf.viewRecords(query, headers, columns);
+      
+    }
+    public void viewPaidRecords(){
+        
+  
+        
+        String query = "SELECT br.BillRecord_ID, u.First_Name, u.Last_Name, ub.Type, ub.Name_Of_Company, br.Date_Paid, br.Amount_Paid, br.Payment_Method, br.Status " +
+                       "FROM BillRecord br " +
+                       "INNER JOIN User u ON br.User_ID = u.User_ID " +
+                       "INNER JOIN UtilityBills ub ON br.Ub_ID = ub.UB_ID "
+                 + "WHERE br.Status = 'Paid' ";
+
+        String[] headers = {"Bill Record ID", "First Name", "Last Name", "Bill Type", "Company Name", "Date Paid", "Amount Paid", "Payment Method","Status"};
+        String[] columns = {"BillRecord_ID", "First_Name", "Last_Name", "Type", "Name_Of_Company", "Date_Paid", "Amount_Paid", "Payment_Method","Status"};
+
+        CONFIG conf = new CONFIG();
+        conf.viewRecords(query, headers, columns);
+    }
+    public void viewUserById(){
+        
+        
+        
+        Scanner sc = new Scanner(System.in);
+        CONFIG conf = new CONFIG();
+         int userId;
+             while (true) {
+        System.out.print("Enter User ID to view all Utility Bills they paid for: ");
+        if (sc.hasNextInt()) {
+            userId = sc.nextInt();
+            if (conf.getSingleValues("SELECT User_ID FROM User WHERE User_ID = ?", userId) != 0) {
+                break;
+            } else {
+                System.out.println("User with this ID does not exist.");
+            }
+        } else {
+            System.out.println("Invalid input. Please enter a valid numeric User ID.");
+            sc.next(); // clear the invalid input
+        }
+    }
+
+        
+        String viewQuery = "SELECT BillRecord.BillRecord_ID, UtilityBills.Type, UtilityBills.Name_Of_Company, BillRecord.Date_Paid, BillRecord.Status FROM BillRecord "
+                + "LEFT JOIN UtilityBills ON UtilityBills.UB_ID = BillRecord.Ub_ID "
+                + "WHERE BillRecord.User_ID = ?";
+        
+        String[] head = {"Bill Record ID", "Type", "Name of Company","Date Paid"," Status"};
+        String[] column = {"BillRecord_ID","Type","Name_Of_Company","Date_Paid","Status"};
+         
+       
+        conf.viewApplicantss(viewQuery, head, column, userId);
+       
+    }
+    
 
     public void viewBillRecords() {
         CONFIG conf = new CONFIG();
@@ -124,7 +210,7 @@ public class BillRecord {
                     addBillRecord();
                     break;
                 case 2:
-                    viewRecords();
+                    viewAllRecords();
                     break;
                 case 3:
                     updateBillRecord(sc, conf);
@@ -161,12 +247,27 @@ public class BillRecord {
     }
 
     private void updateBillRecord(Scanner sc, CONFIG conf) {
-        viewRecords();
-        String sqlUpdate = "UPDATE BillRecord SET Date_Paid = ?, Amount_Paid = ?, Payment_Method = ? WHERE User_ID = ? AND Ub_ID = ?";
         
-        int userId = getValidUserId(sc, conf);
-        int billId = getValidBillId(sc, conf);
-
+        
+        viewAllRecords();
+        String sqlUpdate = "UPDATE BillRecord SET Date_Paid = ?, Amount_Paid = ?, Payment_Method = ? WHERE BillRecord_ID = ?";
+      
+         int billID;
+                while (true) {
+                System.out.print("Enter Bill Record ID to Update : ");
+                if (sc.hasNextInt()) {
+                    billID = sc.nextInt();
+                    if (conf.getSingleValues("SELECT BillRecord_ID FROM BillRecord WHERE BillRecord_ID = ?", billID) != 0) {
+                        break;
+                    } else {
+                        System.out.println("Selected Bill Record doesn't exist.");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a valid numeric Bill Record ID.");
+                    sc.next(); 
+                }
+            }
+        
         System.out.print("Enter new Date Paid: ");
         String newDatePaid = sc.next();
         System.out.print("Enter new Amount Paid: ");
@@ -174,12 +275,12 @@ public class BillRecord {
         System.out.print("Enter new Payment Method: ");
         String newPaymentMethod = sc.next();
 
-        conf.updateRecord(sqlUpdate, newDatePaid, newAmountPaid, newPaymentMethod, userId, billId);
+        conf.updateRecord(sqlUpdate, newDatePaid, newAmountPaid, newPaymentMethod, billID);
         System.out.println("Bill record updated successfully!");
     }
 
     private void deleteBillRecord(Scanner sc, CONFIG conf) {
-        viewRecords();
+        viewAllRecords();
         String sqlDelete = "DELETE FROM BillRecord WHERE BillRecord_ID = ?";
         
         int billRecordId;

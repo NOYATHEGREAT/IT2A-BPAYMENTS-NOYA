@@ -171,5 +171,38 @@ public void deleteRecord(String sql, Object... values) {
          }
          return  result;
      }
+    public void viewApplicantss(String query, String[] header, String[] columns, int userId) {
+    try (Connection conn = this.connectDB();  // Use the configuration to get the connection
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+
+        // Set the applicantId parameter for filtering
+        stmt.setInt(1, userId);
+        
+        ResultSet rs = stmt.executeQuery();
+
+        // Print header
+        for (String h : header) {
+            System.out.print(h + "    \t");
+        }
+        System.out.println();
+        
+        // Print a separator line after the header for better readability
+        System.out.println("------------------------------------------------------------");
+
+        // Print rows
+        while (rs.next()) {
+            for (String col : columns) {
+                System.out.print(rs.getString(col) + "          \t");
+            }
+            System.out.println();
+            
+            // Print a separator line between rows
+            System.out.println("------------------------------------------------------------");
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
 
 }

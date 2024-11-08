@@ -9,7 +9,7 @@ public class BILLPAYMENTS {
        
         Scanner sc = new Scanner(System.in);
         
-        String resp;
+        boolean exit = true;
         do{
  
          System.out.print("\033[H\033[2J");
@@ -79,15 +79,18 @@ public class BILLPAYMENTS {
                     }
                 break;    
             case 5:
-                exit(0);
+                System.out.print("Do you want to log out? Yes or No: ");
+                String response = sc.next();
+                if(response.equalsIgnoreCase("yes")){
+                    exit = false;
+                }
                 break;
             
             
         }
-            System.out.println("");
-            System.out.print("Do you want to continue in the Main Menu? Yes or No: ");
-            resp = sc.next();
-        }while(resp.equalsIgnoreCase("yes"));
+          
+          
+        }while(exit);
  
         System.out.println("Thank you for using the Application ! ");
         

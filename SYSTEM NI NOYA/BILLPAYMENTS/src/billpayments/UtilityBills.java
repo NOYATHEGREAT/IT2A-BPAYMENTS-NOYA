@@ -13,15 +13,20 @@ public class UtilityBills {
         System.out.println("=====================================");
         
         System.out.print("Enter Type of Bills: ");
-        String nbill = sc.next();
+        String nbill = sc.nextLine(); 
+        
         System.out.print("Enter Name Of Company: ");
-        String com = sc.next();
+        String com = sc.nextLine(); 
+        
         System.out.print("Payment Method: ");
-        String met = sc.next();
+        String met = sc.nextLine(); 
+        
         System.out.print("Release Bill Date Every Month (e.g., 8-9): ");
-        String date = sc.next();
+        String date = sc.nextLine(); 
+        
         System.out.print("Due Date (e.g., 20-23): ");
-        String due = sc.next();
+        String due = sc.nextLine(); 
+        
         
         String sql = "INSERT INTO UtilityBills (Type, Name_Of_Company, Payment_Method, Release_Date, Due_Date) VALUES (?,?,?,?,?)";
         
@@ -97,13 +102,17 @@ public class UtilityBills {
                         }
                     }
 
-                    System.out.print("Enter new Payment method: ");
-                    String newpay = sc.next();
-                    System.out.print("Enter new Release Date: ");
-                    String newdate = sc.next();
-                    System.out.print("Enter new Due Date: ");
-                    String newdue = sc.next();
+                                System.out.print("Enter new Payment method: ");
+                      String newpay = sc.nextLine(); 
 
+
+                      System.out.print("Enter new Release Date: ");
+                      String newdate = sc.nextLine();
+
+                      System.out.print("Enter new Due Date: ");
+                      String newdue = sc.nextLine(); 
+                      
+                      
                     conf.updateRecord(sqlUpdate, newpay, newdate, newdue, ID2);
                     System.out.println("Utility bill updated successfully!");
                     break;
