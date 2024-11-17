@@ -1,5 +1,4 @@
 package billpayments;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -17,7 +16,7 @@ public class BillRecord {
         USER us = new USER();
         us.viewUser();
         
-        System.out.println(" - Select a Utility Bill - ");
+        System.out.println(" SELECT A UTILITY BILL ");
         UtilityBills ub = new UtilityBills();
         ub.viewBills();
 
@@ -159,7 +158,7 @@ public class BillRecord {
             }
         } else {
             System.out.println("Invalid input. Please enter a valid numeric User ID.");
-            sc.next(); // clear the invalid input
+            sc.next(); 
         }
     }
 
@@ -197,12 +196,12 @@ public class BillRecord {
             System.out.println("=====================================");
             System.out.println("|         BILL RECORD MENU          |");
             System.out.println("=====================================");
-            System.out.println("1. Add a Bill Record");
-            System.out.println("2. View Bill Records");
-            System.out.println("3. Update Bill Record");
-            System.out.println("4. Delete Bill Record");
-            System.out.println("5. Exit");
-
+            System.out.println("|     1. Add a Bill Record          |");
+            System.out.println("|     2. View Bill Records          |");
+            System.out.println("|     3. Update Bill Record         |");
+            System.out.println("|     4. Delete Bill Record         |");
+            System.out.println("|     5. Exit                       |");
+            System.out.println("=====================================");
             int choice = getChoice(sc);
 
             switch (choice) {

@@ -1,7 +1,5 @@
 package billpayments;
-
 import java.util.Scanner;
-
 public class UtilityBills {
 
     public void addBills() {
@@ -9,7 +7,7 @@ public class UtilityBills {
         CONFIG conf = new CONFIG();
         
         System.out.println("=====================================");
-        System.out.println("|         ADD UTILITY BILL         |");
+        System.out.println("|         ADD UTILITY BILL          |");
         System.out.println("=====================================");
         
         System.out.print("Enter Type of Bills: ");
@@ -51,14 +49,14 @@ public class UtilityBills {
         String res;
         do {
             System.out.println("=====================================");
-            System.out.println("|         UTILITY BILL MENU        |");
+            System.out.println("|         UTILITY BILL MENU         |");
             System.out.println("=====================================");
-            System.out.println("1. Add Bills");
-            System.out.println("2. View Bills");
-            System.out.println("3. Update Bills");
-            System.out.println("4. Delete Bills");
-            System.out.println("5. Exit");
-
+            System.out.println("|   1. Add Bills                    |");
+            System.out.println("|   2. View Bills                   |");
+            System.out.println("|   3. Update Bills                 |");
+            System.out.println("|   4. Delete Bills                 |");
+            System.out.println("|   5. Exit                         |");
+            System.out.println("=====================================");
             int choice;
             while (true) {
                 System.out.print("Enter choice: ");

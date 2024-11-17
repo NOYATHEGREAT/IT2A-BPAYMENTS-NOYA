@@ -1,9 +1,5 @@
-
 package billpayments;
-
 import java.util.Scanner;
-
-
 public class StatusBill {
     
     
@@ -16,15 +12,15 @@ public class StatusBill {
             System.out.flush();
             
             System.out.println("=====================================");
-            System.out.println("|           STATUS MENU            |");
+            System.out.println("|           STATUS MENU             |");
             System.out.println("=====================================");
-            System.out.println("1. Edit Status");
-            System.out.println("2. View Status");
-            System.out.println("3. Pending Status");
-            System.out.println("4. Not Paid Status");
-            System.out.println("5. Paid Status");
-            System.out.println("6. View User by ID");
-            System.out.println("7. Log out");
+            System.out.println("|    1. Edit Status                 |");
+            System.out.println("|    2. View Status                 |");
+            System.out.println("|    3. Pending Status              |");
+            System.out.println("|    4. Not Paid Status             |");
+            System.out.println("|    5. Paid Status                 |");
+            System.out.println("|    6. View User by ID             |");
+            System.out.println("|    7. Log out                     |");
             System.out.println("=====================================");
       
             int choice;
@@ -48,7 +44,7 @@ public class StatusBill {
                 case 1: 
                     
                    
-                    System.out.println(" - BILL RECORD LIST - ");
+                    System.out.println("  BILL RECORD LIST  ");
                     BillRecord br = new BillRecord();
                     br.viewAllRecords();
                     String sqlup = "UPDATE BillRecord SET Status = ? WHERE BillRecord_ID = ?";
@@ -69,7 +65,7 @@ public class StatusBill {
                     sc.next(); 
                 }
             }
-                       sc.nextLine();
+                    sc.nextLine();
                     
                     System.out.print("Enter Status: ");
                     String stats = sc.nextLine();

@@ -1,17 +1,16 @@
 package billpayments;
-
 import java.util.Scanner;
-
 public class USER {
 
     public void addUser() {
+        int age, cont;
         Scanner sc = new Scanner(System.in);
         CONFIG conf = new CONFIG();
 
         System.out.println("=====================================");
-        System.out.println("|           ADD USER               |");
+        System.out.println("|           ADD USER                |");
         System.out.println("=====================================");
-      System.out.print("Enter First Name: ");
+        System.out.print("Enter First Name: ");
         String fname = sc.nextLine();
         
         System.out.print("Enter Last Name: ");
@@ -21,16 +20,23 @@ public class USER {
         String add = sc.nextLine();  
         
         System.out.print("Age: ");
-        int age = sc.nextInt();
-        
-        sc.nextLine();  
+        while(!sc.hasNextInt()){
+        System.out.println("Invalid Input");
+        sc. next();
+        System.out.println("Enter age again: ");
+        }
+        age = sc.nextInt();  
         
         System.out.print("Contact No: ");
-        String cont = sc.nextLine();  
-        
+        while(!sc.hasNextInt()){
+        System.out.println("Invalid Input");
+        sc. next();
+        System.out.println("Enter No# again: ");
+        }
+        cont = sc.nextInt(); 
         System.out.print("Email Address: ");
         String email = sc.nextLine();  
-        
+        sc. next();
         
         String sql = "INSERT INTO User (First_Name, Last_Name, Address, Age, Contact_No, Email) VALUES (?, ?, ?, ?, ?, ?)";
         conf.addRecord(sql, fname, lname, add, age, cont, email);
@@ -55,14 +61,14 @@ public class USER {
         String res;
         do {
             System.out.println("=====================================");
-            System.out.println("|           USER MENU              |");
+            System.out.println("|           USER MENU               |");
             System.out.println("=====================================");
-            System.out.println("1. Add User");
-            System.out.println("2. View User");
-            System.out.println("3. Update User");
-            System.out.println("4. Delete User");
-            System.out.println("5. Exit");
-
+            System.out.println("|     1. Add User                   |");
+            System.out.println("|     2. View User                  |");
+            System.out.println("|     3. Update User                |");
+            System.out.println("|     4. Delete User                |");
+            System.out.println("|     5. Exit                       |");
+            System.out.println("=====================================");
             int choice;
             while (true) {
                 System.out.print("Enter choice: ");
@@ -109,10 +115,22 @@ public class USER {
                     System.out.print("Enter new Address: ");
                     String newadd = sc.nextLine();
                     System.out.print("Enter new Age: ");
+                    while(!sc.hasNextInt()){
+                    System.out.println("Invalid Input");
+                    sc. next();
+                    System.out.println("Enter new age again: ");
+                    }
                     int newage = sc.nextInt();
                     sc.nextLine();
+                    
                     System.out.print("Enter new Contact No.: ");
+                    while(!sc.hasNextInt()){
+                    System.out.println("Invalid Input");
+                    sc. next();
+                    System.out.println("Enter No# again: ");
+                    }
                     String newcon = sc.nextLine();
+                    
                     System.out.print("Enter new Email Address: ");
                     String newemailadd = sc.nextLine();
 

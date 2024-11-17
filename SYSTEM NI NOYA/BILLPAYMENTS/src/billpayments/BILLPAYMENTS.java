@@ -1,9 +1,6 @@
-
 package billpayments;
-
 import static java.lang.System.exit;
 import java.util.Scanner;
-
 public class BILLPAYMENTS {
     public static void main(String[] args) {
        
@@ -13,21 +10,20 @@ public class BILLPAYMENTS {
         do{
  
          System.out.print("\033[H\033[2J");
-            System.out.flush();
+            
 
             System.out.println("=========================================");
-            System.out.println("|         BILL  MANAGEMENT              |");
+            System.out.println("|        BILL  MANAGEMENT SYSTEM        |");
             System.out.println("=========================================");
-            System.out.println("");
-            System.out.println("          Please select an option:       ");
-            System.out.println("-----------------------------------------");
-            System.out.println("    1. User");
-            System.out.println("    2. Bills");
-            System.out.println("    3. Bill Records");
-            System.out.println("    4. Staff Only");
-            System.out.println("    5. Exit the Application ");
-            System.out.println("-----------------------------------------");
-            System.out.println(" ");
+            System.out.println("|        Please select an option:       |");
+            System.out.println("=========================================");
+            System.out.println("|    1. User                            |");
+            System.out.println("|    2. Bills                           |");
+            System.out.println("|    3. Bill Records                    |");
+            System.out.println("|    4. Staff Only                      |");
+            System.out.println("|    5. Exit the Application            |");
+            System.out.println("=========================================");
+            
        int choice;
            while (true) {
             System.out.print("Enter choice: ");
@@ -58,14 +54,14 @@ public class BILLPAYMENTS {
                  br1.mainBillRecord();
                 break;
             case 4:
-               System.out.print("Are you a Staff? Yes or No: ");
+               System.out.print("Are you a Staff Personel? Yes or No: ");
                     String res = sc.next();
 
                     if (res.equalsIgnoreCase("yes")) {
                         System.out.print("Enter Staff password: ");
                         String hrPassword = sc.next();
 
-                        final String STAFF_PASSWORD = "staff1234";
+                        final String STAFF_PASSWORD = "staff";
 
                         if (hrPassword.equals(STAFF_PASSWORD)) {
                             StatusBill sts1 = new StatusBill();
@@ -85,13 +81,11 @@ public class BILLPAYMENTS {
                 }
                 break;
             
-            
         }
-          
           
         }while(exit);
  
-        System.out.println("Thank you for using the Application ! ");
+        System.out.println("Thank you for using the Application! ");
         
     }
 }
