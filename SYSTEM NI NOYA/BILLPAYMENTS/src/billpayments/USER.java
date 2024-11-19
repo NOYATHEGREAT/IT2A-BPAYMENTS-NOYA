@@ -3,11 +3,12 @@ import java.util.Scanner;
 public class USER {
 
     public void addUser() {
-        int age, cont;
+        int age;
+        String cont;
         Scanner sc = new Scanner(System.in);
         CONFIG conf = new CONFIG();
 
-        System.out.println("=====================================");
+        System.out.println("\n=====================================");
         System.out.println("|           ADD USER                |");
         System.out.println("=====================================");
         System.out.print("Enter First Name: ");
@@ -23,25 +24,26 @@ public class USER {
         while(!sc.hasNextInt()){
         System.out.println("Invalid Input");
         sc. next();
-        System.out.println("Enter age again: ");
+        System.out.print("Enter age again: ");
         }
         age = sc.nextInt();  
         
         System.out.print("Contact No: ");
         while(!sc.hasNextInt()){
         System.out.println("Invalid Input");
-        sc. next();
-        System.out.println("Enter No# again: ");
+        sc. nextLine();
+        System.out.print("Enter again: ");
         }
-        cont = sc.nextInt(); 
+        cont = sc.nextLine(); 
+        
         System.out.print("Email Address: ");
         String email = sc.nextLine();  
-        sc. next();
+        sc.nextLine();
         
         String sql = "INSERT INTO User (First_Name, Last_Name, Address, Age, Contact_No, Email) VALUES (?, ?, ?, ?, ?, ?)";
         conf.addRecord(sql, fname, lname, add, age, cont, email);
         
-        System.out.println("User added successfully!");
+        
     }
 
     public void viewUser() {
@@ -60,7 +62,7 @@ public class USER {
 
         String res;
         do {
-            System.out.println("=====================================");
+            System.out.println("\n=====================================");
             System.out.println("|           USER MENU               |");
             System.out.println("=====================================");
             System.out.println("|     1. Add User                   |");
@@ -111,14 +113,14 @@ public class USER {
                             sc.next();
                         }
                     }
-
+                     sc.nextLine();
                     System.out.print("Enter new Address: ");
                     String newadd = sc.nextLine();
                     System.out.print("Enter new Age: ");
                     while(!sc.hasNextInt()){
                     System.out.println("Invalid Input");
                     sc. next();
-                    System.out.println("Enter new age again: ");
+                    System.out.print("Enter new age again: ");
                     }
                     int newage = sc.nextInt();
                     sc.nextLine();
@@ -126,8 +128,8 @@ public class USER {
                     System.out.print("Enter new Contact No.: ");
                     while(!sc.hasNextInt()){
                     System.out.println("Invalid Input");
-                    sc. next();
-                    System.out.println("Enter No# again: ");
+                    sc.nextLine();
+                    System.out.print("Enter again: ");
                     }
                     String newcon = sc.nextLine();
                     
@@ -135,9 +137,9 @@ public class USER {
                     String newemailadd = sc.nextLine();
 
                     conf.updateRecord(sqlUpdate, newadd, newage, newcon, newemailadd, ID);
-                    System.out.println("User updated successfully!");
                     break;
-                case 4:
+                    
+                    case 4:
                     us.viewUser();
                     String sqlDelete = "DELETE FROM User WHERE User_ID = ?";
                     int idUp;
@@ -156,9 +158,9 @@ public class USER {
                         }
                     }
                     conf.deleteRecord(sqlDelete, idUp);
-                    System.out.println("User deleted successfully!");
                     break;
-                case 5:
+                    
+                    case 5:
                     System.out.println("Exiting...");
                     break;
             }

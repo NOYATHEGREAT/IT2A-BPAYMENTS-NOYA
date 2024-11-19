@@ -31,7 +31,13 @@ public class BillRecord {
         String datePaid = currdate.format(format);
         
         System.out.print("Amount you paid: ");
-        double amountPaid = sc.nextDouble();
+        double amountPaid;
+        while(!sc.hasNextInt()){
+        System.out.println("Invalid Input");
+        sc. next();
+        System.out.print("Enter age again: ");
+        }
+        amountPaid = sc.nextDouble();
         
         System.out.print("Payment Method: ");
         String paymentMethod = sc.next();
@@ -193,7 +199,7 @@ public class BillRecord {
         String res;
 
         do {
-            System.out.println("=====================================");
+            System.out.println("\n=====================================");
             System.out.println("|         BILL RECORD MENU          |");
             System.out.println("=====================================");
             System.out.println("|     1. Add a Bill Record          |");
@@ -269,8 +275,17 @@ public class BillRecord {
         
         System.out.print("Enter new Date Paid: ");
         String newDatePaid = sc.next();
+        
         System.out.print("Enter new Amount Paid: ");
-        double newAmountPaid = sc.nextDouble();
+        double newAmountPaid;
+        sc.nextLine();
+        while(!sc.hasNextInt()){
+        System.out.println("Invalid Input");
+        sc. next();
+        System.out.print("Enter New amount again: ");
+        }
+        newAmountPaid = sc.nextDouble();
+        
         System.out.print("Enter new Payment Method: ");
         String newPaymentMethod = sc.next();
 

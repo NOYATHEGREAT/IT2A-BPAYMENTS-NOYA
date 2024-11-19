@@ -12,7 +12,7 @@ public class BILLPAYMENTS {
          System.out.print("\033[H\033[2J");
             
 
-            System.out.println("=========================================");
+            System.out.println("\n=========================================");
             System.out.println("|        BILL  MANAGEMENT SYSTEM        |");
             System.out.println("=========================================");
             System.out.println("|        Please select an option:       |");
@@ -24,8 +24,8 @@ public class BILLPAYMENTS {
             System.out.println("|    5. Exit the Application            |");
             System.out.println("=========================================");
             
-       int choice;
-           while (true) {
+            int choice;
+            while (true) {
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 choice = sc.nextInt();
@@ -38,9 +38,9 @@ public class BILLPAYMENTS {
                 System.out.println("Invalid input. Please enter a valid number.");
                 sc.next();
             }
-        } 
+            } 
        
-        switch(choice){
+            switch(choice){
             case 1:
                 USER us  = new USER();
                 us.mainUser();
@@ -54,26 +54,11 @@ public class BILLPAYMENTS {
                  br1.mainBillRecord();
                 break;
             case 4:
-               System.out.print("Are you a Staff Personel? Yes or No: ");
-                    String res = sc.next();
-
-                    if (res.equalsIgnoreCase("yes")) {
-                        System.out.print("Enter Staff password: ");
-                        String hrPassword = sc.next();
-
-                        final String STAFF_PASSWORD = "staff";
-
-                        if (hrPassword.equals(STAFF_PASSWORD)) {
-                            StatusBill sts1 = new StatusBill();
-                           sts1.Status();
-                        } else {
-                            System.out.println("Invalid Staff password. Access denied.");
-                        }
-                    } else {
-                        System.out.println("You do not have permission to access Staff-only features.");
-                    }
-                break;    
-            case 5:
+                StatusBill sts1 = new StatusBill();
+                sts1.Status();       
+                break;
+                
+                case 5:
                 System.out.print("Do you want to log out? Yes or No: ");
                 String response = sc.next();
                 if(response.equalsIgnoreCase("yes")){

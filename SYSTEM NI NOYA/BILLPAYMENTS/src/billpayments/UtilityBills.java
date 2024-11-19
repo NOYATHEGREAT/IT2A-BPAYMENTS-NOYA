@@ -6,7 +6,7 @@ public class UtilityBills {
         Scanner sc = new Scanner(System.in);
         CONFIG conf = new CONFIG();
         
-        System.out.println("=====================================");
+        System.out.println("\n=====================================");
         System.out.println("|         ADD UTILITY BILL          |");
         System.out.println("=====================================");
         
@@ -29,7 +29,7 @@ public class UtilityBills {
         String sql = "INSERT INTO UtilityBills (Type, Name_Of_Company, Payment_Method, Release_Date, Due_Date) VALUES (?,?,?,?,?)";
         
         conf.addRecord(sql, nbill, com, met, date, due);
-        System.out.println("Utility bill added successfully!");
+      
     }
 
     public void viewBills() {
@@ -48,7 +48,7 @@ public class UtilityBills {
         
         String res;
         do {
-            System.out.println("=====================================");
+            System.out.println("\n=====================================");
             System.out.println("|         UTILITY BILL MENU         |");
             System.out.println("=====================================");
             System.out.println("|   1. Add Bills                    |");
@@ -57,8 +57,9 @@ public class UtilityBills {
             System.out.println("|   4. Delete Bills                 |");
             System.out.println("|   5. Exit                         |");
             System.out.println("=====================================");
-            int choice;
-            while (true) {
+            
+                int choice;
+                while (true) {
                 System.out.print("Enter choice: ");
                 if (sc.hasNextInt()) {
                     choice = sc.nextInt();
@@ -73,7 +74,7 @@ public class UtilityBills {
                 }
             }
 
-            switch (choice) {
+                switch (choice) {
                 case 1:
                     ub.addBills();
                     break;
@@ -99,7 +100,7 @@ public class UtilityBills {
                             sc.next();
                         }
                     }
-
+                                sc.nextLine(); 
                                 System.out.print("Enter new Payment method: ");
                       String newpay = sc.nextLine(); 
 
@@ -112,10 +113,10 @@ public class UtilityBills {
                       
                       
                     conf.updateRecord(sqlUpdate, newpay, newdate, newdue, ID2);
-                    System.out.println("Utility bill updated successfully!");
+                    
                     break;
 
-                case 4:
+                    case 4:
                     ub.viewBills();
                     String sqlDEL = "DELETE FROM UtilityBills WHERE UB_ID = ?";
                     int idUp;
@@ -134,10 +135,10 @@ public class UtilityBills {
                         }
                     }
                     conf.deleteRecord(sqlDEL, idUp);
-                    System.out.println("Utility bill deleted successfully!");
+                   
                     break;
 
-                case 5:
+                    case 5:
                     System.out.println("Exiting...");
                     break;
             }
