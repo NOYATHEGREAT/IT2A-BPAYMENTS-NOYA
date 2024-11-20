@@ -71,12 +71,11 @@ public void addRecord(String sql, Object... values) {
 
             // Print the headers dynamically
             StringBuilder headerLine = new StringBuilder();
-            headerLine.append("-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n| ");
+            headerLine.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n ");
             for (String header : columnHeaders) {
                 headerLine.append(String.format("%-20s | ", header)); // Adjust formatting as needed
             }
-            headerLine.append("\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-
+            headerLine.append("\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ");
             System.out.println(headerLine.toString());
 
             // Print the rows dynamically based on the provided column names
@@ -88,7 +87,7 @@ public void addRecord(String sql, Object... values) {
                 }
                 System.out.println(row.toString());
             }
-            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
 
         } catch (SQLException e) {
             System.out.println("Error retrieving records: " + e.getMessage());
@@ -186,7 +185,7 @@ public void deleteRecord(String sql, Object... values) {
         System.out.println();
         
         // Print a separator line after the header for better readability
-        System.out.println("------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------");
 
         // Print rows
         while (rs.next()) {

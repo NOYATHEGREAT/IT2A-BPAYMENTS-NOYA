@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class USER {
 
     public void addUser() {
-        int age;
-        String cont;
+        
         Scanner sc = new Scanner(System.in);
         CONFIG conf = new CONFIG();
 
@@ -20,28 +19,44 @@ public class USER {
         System.out.print("Address: ");
         String add = sc.nextLine();  
         
-        System.out.print("Age: ");
-        while(!sc.hasNextInt()){
-        System.out.println("Invalid Input");
-        sc. next();
-        System.out.print("Enter age again: ");
+        int age;
+        while (true) {
+            System.out.print("Age: ");
+            if (sc.hasNextInt()) { 
+                age = sc.nextInt();  
+                break; 
+            } else {
+                System.out.println("Invalid input! Please enter a valid integer for age.");
+                sc.next(); 
+            }
         }
-        age = sc.nextInt();  
         
-        System.out.print("Contact No: ");
-        while(!sc.hasNextInt()){
-        System.out.println("Invalid Input");
-        sc. nextLine();
-        System.out.print("Enter again: ");
+        
+      String cont1 = ""; 
+        
+        while (true) {
+            System.out.print("Contact No: ");
+            
+          
+            if (sc.hasNext()) {  
+                cont1 = sc.next(); 
+              
+            if (cont1.matches("\\d+")) {  
+                    break;  
+                } else {
+                    System.out.println("Invalid input! Please enter a valid numeric contact number.");
+                }
+            }
         }
-        cont = sc.nextLine(); 
+        
+        
         
         System.out.print("Email Address: ");
-        String email = sc.nextLine();  
-        sc.nextLine();
+        String email = sc.next();  
+      
         
         String sql = "INSERT INTO User (First_Name, Last_Name, Address, Age, Contact_No, Email) VALUES (?, ?, ?, ?, ?, ?)";
-        conf.addRecord(sql, fname, lname, add, age, cont, email);
+        conf.addRecord(sql, fname, lname, add, age, cont1, email);
         
         
     }
@@ -113,26 +128,49 @@ public class USER {
                             sc.next();
                         }
                     }
+                    
+                    
                      sc.nextLine();
+                     
                     System.out.print("Enter new Address: ");
                     String newadd = sc.nextLine();
-                    System.out.print("Enter new Age: ");
-                    while(!sc.hasNextInt()){
-                    System.out.println("Invalid Input");
-                    sc. next();
-                    System.out.print("Enter new age again: ");
-                    }
-                    int newage = sc.nextInt();
-                    sc.nextLine();
                     
-                    System.out.print("Enter new Contact No.: ");
-                    while(!sc.hasNextInt()){
-                    System.out.println("Invalid Input");
-                    sc.nextLine();
-                    System.out.print("Enter again: ");
+                 
+                            int newage;
+                 while (true) {
+                      System.out.print("Enter new Age: ");
+                     if (sc.hasNextInt()) { 
+                         newage = sc.nextInt();  
+                         break; 
+                     } else {
+                         System.out.println("Invalid input! Please enter a valid integer for age.");
+                         sc.next(); 
+                     }
+                 }
+   
+             
+                  
+                                sc.nextLine();
+
+                                 String newcon = ""; 
+
+                    while (true) {
+                        System.out.print("Contact No: ");
+
+
+                        if (sc.hasNext()) {  
+                            newcon = sc.next(); 
+
+                        if (newcon.matches("\\d+")) {  
+                                break;  
+                            } else {
+                                System.out.println("Invalid input! Please enter a valid numeric contact number.");
+                            }
+                        }
                     }
-                    String newcon = sc.nextLine();
-                    
+
+                  sc.nextLine();
+          
                     System.out.print("Enter new Email Address: ");
                     String newemailadd = sc.nextLine();
 
